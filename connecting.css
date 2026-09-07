@@ -1,0 +1,582 @@
+/* =========================================================
+   CONNECTING SCREEN
+   ========================================================= */
+
+.connecting-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(0, 255, 170, 0.08),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(0, 120, 255, 0.06),
+            transparent 35%
+        ),
+        #050908;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.connecting-screen.active {
+    display: flex;
+}
+
+
+/* =========================================================
+   BACKGROUND GLOW
+   ========================================================= */
+
+.connecting-screen::before,
+.connecting-screen::after {
+    content: "";
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    opacity: 0.12;
+
+    pointer-events: none;
+}
+
+.connecting-screen::before {
+    background: #00ff9d;
+
+    top: 18%;
+    left: 20%;
+
+    animation: backgroundGlowOne 5s ease-in-out infinite alternate;
+}
+
+.connecting-screen::after {
+    background: #008cff;
+
+    bottom: 15%;
+    right: 18%;
+
+    animation: backgroundGlowTwo 6s ease-in-out infinite alternate;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.connecting-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 420px;
+
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    animation: connectingAppear 0.45s ease-out forwards;
+}
+
+
+/* =========================================================
+   CALL ICON AREA
+   ========================================================= */
+
+.connecting-call {
+    position: relative;
+
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 34px;
+}
+
+
+/* OUTER RING */
+
+.connecting-ring {
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(0, 255, 170, 0.18);
+
+    animation: ringPulse 2.4s ease-out infinite;
+}
+
+
+/* SECOND RING */
+
+.connecting-ring::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 14px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(0, 255, 170, 0.25);
+
+    animation: innerRingPulse 2.4s ease-out infinite;
+}
+
+
+/* THIRD RING */
+
+.connecting-ring::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 29px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(0, 255, 170, 0.32);
+
+    animation: innerRingPulse 2.4s ease-out infinite 0.25s;
+}
+
+
+/* =========================================================
+   ICON CIRCLE
+   ========================================================= */
+
+.connecting-icon {
+    position: relative;
+    z-index: 5;
+
+    width: 76px;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #18e99a,
+            #00bd7c
+        );
+
+    box-shadow:
+        0 0 0 8px rgba(0, 255, 170, 0.04),
+        0 0 30px rgba(0, 255, 170, 0.25),
+        0 0 70px rgba(0, 255, 170, 0.12);
+
+    animation: iconBreathing 2s ease-in-out infinite;
+}
+
+
+/* PHONE ICON */
+
+.connecting-icon i {
+    color: #ffffff;
+
+    font-size: 30px;
+
+    transform: rotate(-8deg);
+
+    filter: drop-shadow(
+        0 2px 5px rgba(0, 0, 0, 0.2)
+    );
+}
+
+
+/* =========================================================
+   CONNECTION DOTS
+   ========================================================= */
+
+.connecting-status {
+    position: absolute;
+
+    bottom: 4px;
+    right: 5px;
+
+    width: 16px;
+    height: 16px;
+
+    border-radius: 50%;
+
+    background: #19f29a;
+
+    border: 3px solid #050908;
+
+    box-shadow:
+        0 0 12px rgba(0, 255, 170, 0.7);
+
+    animation: statusPulse 1.4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+.connecting-title {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 26px;
+    line-height: 1.2;
+
+    font-weight: 600;
+
+    letter-spacing: -0.6px;
+}
+
+.connecting-subtitle {
+    margin: 10px 0 0;
+
+    color: rgba(255, 255, 255, 0.48);
+
+    font-size: 14px;
+
+    font-weight: 400;
+
+    letter-spacing: 0.1px;
+}
+
+
+/* =========================================================
+   WAVEFORM
+   ========================================================= */
+
+.connecting-wave {
+    height: 42px;
+
+    margin-top: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+}
+
+.connecting-wave span {
+    display: block;
+
+    width: 3px;
+
+    border-radius: 10px;
+
+    background: #19e99a;
+
+    box-shadow:
+        0 0 8px rgba(0, 255, 170, 0.35);
+
+    animation: waveAnimation 1.1s ease-in-out infinite;
+}
+
+
+/* Different heights */
+
+.connecting-wave span:nth-child(1) {
+    height: 8px;
+    animation-delay: -0.8s;
+}
+
+.connecting-wave span:nth-child(2) {
+    height: 14px;
+    animation-delay: -0.7s;
+}
+
+.connecting-wave span:nth-child(3) {
+    height: 22px;
+    animation-delay: -0.6s;
+}
+
+.connecting-wave span:nth-child(4) {
+    height: 30px;
+    animation-delay: -0.5s;
+}
+
+.connecting-wave span:nth-child(5) {
+    height: 38px;
+    animation-delay: -0.4s;
+}
+
+.connecting-wave span:nth-child(6) {
+    height: 30px;
+    animation-delay: -0.3s;
+}
+
+.connecting-wave span:nth-child(7) {
+    height: 22px;
+    animation-delay: -0.2s;
+}
+
+.connecting-wave span:nth-child(8) {
+    height: 14px;
+    animation-delay: -0.1s;
+}
+
+.connecting-wave span:nth-child(9) {
+    height: 8px;
+}
+
+
+/* =========================================================
+   BOTTOM INFO
+   ========================================================= */
+
+.connecting-info {
+    margin-top: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    color: rgba(255, 255, 255, 0.38);
+
+    font-size: 11px;
+}
+
+.connecting-info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 105px;
+}
+
+.connecting-info-item i {
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.connecting-divider {
+    width: 1px;
+    height: 28px;
+
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes connectingAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+@keyframes ringPulse {
+
+    0% {
+        transform: scale(0.72);
+        opacity: 0.8;
+    }
+
+    70% {
+        transform: scale(1.08);
+        opacity: 0.18;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+
+@keyframes innerRingPulse {
+
+    0% {
+        transform: scale(0.7);
+        opacity: 0.7;
+    }
+
+    70% {
+        transform: scale(1.05);
+        opacity: 0.15;
+    }
+
+    100% {
+        transform: scale(1.15);
+        opacity: 0;
+    }
+}
+
+
+@keyframes iconBreathing {
+
+    0%,
+    100% {
+        transform: scale(0.96);
+    }
+
+    50% {
+        transform: scale(1.04);
+    }
+}
+
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        transform: scale(0.8);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+
+@keyframes waveAnimation {
+
+    0%,
+    100% {
+        transform: scaleY(0.45);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+
+@keyframes backgroundGlowOne {
+
+    from {
+        transform: translate(-30px, -20px);
+    }
+
+    to {
+        transform: translate(50px, 40px);
+    }
+}
+
+
+@keyframes backgroundGlowTwo {
+
+    from {
+        transform: translate(30px, 20px);
+    }
+
+    to {
+        transform: translate(-40px, -30px);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+   @media (max-width: 480px) {
+
+    .connecting-content {
+        padding: 24px;
+        position: relative;
+        top: -65px;
+    }
+
+    .connecting-call {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 30px;
+    }
+
+    .connecting-ring {
+        width: 140px;
+        height: 140px;
+    }
+
+    .connecting-icon {
+        width: 72px;
+        height: 72px;
+    }
+
+    .connecting-icon i {
+        font-size: 28px;
+    }
+
+    .connecting-title {
+        font-size: 23px;
+    }
+
+    .connecting-subtitle {
+        font-size: 13px;
+    }
+
+    .connecting-wave {
+        margin-top: 24px;
+    }
+
+    .connecting-info {
+        margin-top: 48px;
+    }
+
+    .connecting-info-item {
+        min-width: 90px;
+        font-size: 10px;
+    }
+}
