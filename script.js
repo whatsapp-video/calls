@@ -4,7 +4,7 @@
     const profiles = [
         {
             image: "assets/profiles/profile1.jpg",
-            name: "DivyaShree",
+            name: "Divya",
             bio: "I'm Hotter than your ex 💋",
             place: "Chennai",
             age: 26,
